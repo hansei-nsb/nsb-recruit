@@ -106,12 +106,12 @@ export function GalleryPage() {
             <div className="mx-auto w-full max-w-[800px] grid gap-4 sm:gap-6 last:mb-0">
               <div className="space-y-2">
                 <p>
-                  "Joining Network Server Build has been an amazing experience.
-                  I've learned so much from the workshops and met some great
-                  people who share my passion for servers. The hands-on training
-                  sessions have been incredibly valuable, and I feel more
-                  confident in my skills thanks to the support of this
-                  community."
+                  {'"'}Joining Network Server Build has been an amazing
+                  experience. I{"'"}ve learned so much from the workshops and
+                  met some great people who share my passion for servers. The
+                  hands-on training sessions have been incredibly valuable, and
+                  I feel more confident in my skills thanks to the support of
+                  this community.{'"'}
                 </p>
                 <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
                   — Emily, Network Server Build Member
@@ -119,13 +119,13 @@ export function GalleryPage() {
               </div>
               <div className="space-y-2">
                 <p>
-                  "As a network administrator, I'm always looking for ways to
-                  stay updated on the latest trends and technologies. Network
-                  Server Build provides the perfect platform for learning and
-                  networking. The events are well-organized, and the speakers
-                  are experts in their field. I highly recommend this club to
-                  anyone interested in advancing their knowledge of server
-                  management and networking."
+                  {'"'}As a network administrator, I{"'"}m always looking for
+                  ways to stay updated on the latest trends and technologies.
+                  Network Server Build provides the perfect platform for
+                  learning and networking. The events are well-organized, and
+                  the speakers are experts in their field. I highly recommend
+                  this club to anyone interested in advancing their knowledge of
+                  server management and networking.{'"'}
                 </p>
                 <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
                   — Alex, Network Server Build Member
