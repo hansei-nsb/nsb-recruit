@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 import { cn } from "@/lib/utils";
+import { ModeToggle } from "./theme-provider";
 
 export function Navbar() {
   return (
@@ -22,37 +23,27 @@ export function Navbar() {
         NSB
         <span className="sr-only">Network Server Build</span>
       </Link>
-      <nav className="ml-auto flex gap-4 sm:gap-6">
+      <nav className="ml-auto flex items-center gap-4 sm:gap-6">
         <Link
           className="text-sm font-medium hover:underline underline-offset-4"
-          href="#"
+          href="/"
         >
           Home
         </Link>
         <Link
           className="text-sm font-medium hover:underline underline-offset-4"
-          href="#"
+          href="/about"
         >
           About
         </Link>
+
         <Link
           className="text-sm font-medium hover:underline underline-offset-4"
-          href="#"
+          href="/join"
         >
-          Events
+          Join Now
         </Link>
-        <Link
-          className="text-sm font-medium hover:underline underline-offset-4"
-          href="#"
-        >
-          Membership
-        </Link>
-        <Link
-          className="text-sm font-medium hover:underline underline-offset-4"
-          href="#"
-        >
-          Contact
-        </Link>
+        <ModeToggle />
       </nav>
     </header>
   );

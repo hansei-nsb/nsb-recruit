@@ -1,3 +1,5 @@
+import { ThemeProvider } from "@/components/theme-provider";
+
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
@@ -9,6 +11,7 @@ const fontSans = FontSans({
 });
 
 import { cn } from "@/lib/utils";
+import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -28,8 +31,16 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <Navbar />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
