@@ -4,9 +4,20 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
+import { cn } from "@/lib/utils";
+
 export function Navbar() {
   return (
-    <header className="px-4 lg:px-6 h-14 flex items-center">
+    <header
+      className={cn(
+        // 스크롤시 고정된 해더
+        "sticky top-0 z-50",
+        // 해더 컨테이너
+        "px-4 lg:px-6 h-14 flex items-center",
+        // 아크릴 효과
+        "backdrop-filter backdrop-blur-lg"
+      )}
+    >
       <Link className="flex items-center justify-center" href="#">
         NSB
         <span className="sr-only">Network Server Build</span>
