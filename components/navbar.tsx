@@ -14,12 +14,16 @@ export function Navbar() {
         // 스크롤시 고정된 해더
         "sticky top-0 z-50",
         // 해더 컨테이너
-        "px-4 lg:px-6 h-14 flex items-center",
+        "px-4 lg:px-6 h-20 flex items-center",
         // 아크릴 효과
         "backdrop-filter backdrop-blur-lg"
       )}
     >
-      <Link className="flex items-center justify-center" href="#">
+      <Link
+        className="flex items-center justify-center text-2xl font-bold"
+        href="/"
+      >
+        <img src="/logo.png" alt="NSB" className="h-16 w-auto" />
         NSB
         <span className="sr-only">Network Server Build</span>
       </Link>
