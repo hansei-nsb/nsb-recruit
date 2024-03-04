@@ -36,24 +36,6 @@ export function Navbar() {
 
       <NavigationMenu className="ml-auto flex items-center gap-4 sm:gap-6">
         <NavigationMenuList>
-          {/* <NavigationMenuItem>
-            <Link href="/" legacyBehavior passHref>
-              <NavigationMenuLink
-                className={buttonVariants({ variant: "ghost" })}
-              >
-                Home
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/about" legacyBehavior passHref>
-              <NavigationMenuLink
-                className={buttonVariants({ variant: "ghost" })}
-              >
-                About
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem> */}
           <NavigationMenuItem>
             <Link href="#" legacyBehavior passHref>
               <NavigationMenuLink
