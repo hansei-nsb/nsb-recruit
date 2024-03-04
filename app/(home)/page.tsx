@@ -123,31 +123,27 @@ export default function Page() {
               NSB에서 보낸 지난 활동들을 확인해보세요.
             </p>
           </div>
-          <div className="mx-auto w-full max-w-[900px] grid gap-4 sm:gap-6 lg:grid-cols-2 xl:gap-8">
+          <div className="w-full grid grid-cols-3 gap-3">
             <img
               alt="Photo"
-              className="rounded-xl object-cover overflow-hidden aspect-[16/9]"
+              // grid 2칸 차지
+              className="rounded-xl object-cover overflow-hidden aspect-[16/9] col-span-2"
+              height="225"
+              src="https://cataas.com/cat"
+              width="400"
+            />
+            <div />
+            <div />
+            <img
+              alt="Photo"
+              className="rounded-xl object-cover overflow-hidden aspect-[16/9] col-span-2"
               height="225"
               src="https://cataas.com/cat"
               width="400"
             />
             <img
               alt="Photo"
-              className="rounded-xl object-cover overflow-hidden aspect-[16/9]"
-              height="225"
-              src="https://cataas.com/cat"
-              width="400"
-            />
-            <img
-              alt="Photo"
-              className="rounded-xl object-cover overflow-hidden aspect-[16/9]"
-              height="225"
-              src="https://cataas.com/cat"
-              width="400"
-            />
-            <img
-              alt="Photo"
-              className="rounded-xl object-cover overflow-hidden aspect-[16/9]"
+              className="rounded-xl object-cover overflow-hidden aspect-[16/9] col-span-2"
               height="225"
               src="https://cataas.com/cat"
               width="400"
