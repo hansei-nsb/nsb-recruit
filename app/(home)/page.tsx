@@ -7,6 +7,13 @@ import {
   Card,
 } from "@/components/ui/card";
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
 import { buttonVariants } from "@/components/ui/button";
 
 import { Input } from "@/components/ui/input";
@@ -147,6 +154,50 @@ export default function Page() {
               width="400"
             />
           </div>
+        </div>
+      </section>
+
+      <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gray-100 dark:bg-gray-800">
+        <div className="container grid items-center gap-4 px-4 text-center md:px-6 lg:gap-10">
+          <div className="space-y-3">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              자주 묻는 질문
+            </h2>
+          </div>
+
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger>
+                Q. 클라우드 개념조차 모르는데.. 동아리에 지원해도 될까요?
+              </AccordionTrigger>
+              <AccordionContent>
+                A. 기본적인 클라우드 개념이 있으면 좋지만 없어도 열정만 있다면
+                괜찮아요 {":)"}
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-2">
+              <AccordionTrigger>
+                Q. 기능경기대회는 필수로 참가하는건가요?
+              </AccordionTrigger>
+              <AccordionContent>
+                A. Lorem Ipsum is simply dummy text of the printing and
+                typesetting industry. Lorem Ipsum has been the industrys
+                standard dummy text ever
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-3">
+              <AccordionTrigger>
+                Q. 다른 동아리를 신청했는데.. 동아리 중복신청이 가능한가요?
+              </AccordionTrigger>
+              <AccordionContent>
+                A. Lorem Ipsum is simply dummy text of the printing and
+                typesetting industry. Lorem Ipsum has been the industrys
+                standard dummy text ever
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </section>
 
