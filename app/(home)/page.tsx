@@ -6,98 +6,150 @@ import {
   CardContent,
   Card,
 } from "@/components/ui/card";
+
+import { buttonVariants } from "@/components/ui/button";
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+import aws from "@/assets/aws.png";
+import laptop from "@/assets/laptop.png";
+import people from "@/assets/people.png";
+
+import Image from "next/image";
 
 export default function Page() {
   return (
     <>
       <div className="bg-gray-50/90 border-t border-b border-gray-200 dark:bg-gray-950/90">
-        <div className="container py-12 lg:py-16 grid gap-6 px-4 text-center md:gap-8 lg:gap-12">
+        <div className="container py-12 lg:py-32 flex flex-col items-center gap-6 px-4 text-center md:gap-8 lg:gap-12">
           <div className="space-y-2">
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
               Network Server Build
             </h1>
             <p className="mx-auto max-w-2xl text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-              Connecting the next generation of tech leaders.
+              교내 자율동아리 NSB 신입부원 모집
             </p>
           </div>
-          <div className="flex mx-auto max-w-sm flex-col gap-2 lg:gap-4 lg:max-w-md">
-            <Link
-              className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-950 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
-              href="#"
-            >
-              Join Now
-            </Link>
-            <Link
-              className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-950 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
-              href="#"
-            >
-              Learn More
-            </Link>
-          </div>
+          <Link
+            href="#"
+            className={cn(
+              buttonVariants({ variant: "secondary" }),
+              "w-fit py-5 px-10"
+            )}
+          >
+            지원하기
+          </Link>
         </div>
       </div>
+
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+        <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
+          <div className="space-y-2">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              NSB란?
+            </h2>
+            <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+              NSB는 교내 자율동아리로 기능경기대회 에 출전하는 동아리에요
+              기능경기대회에 출전하기 위해 클라우드 서비스의 핵심이해와 클라우드
+              서비스, 네트워크 구축 및 컴퓨터 시스템을 배워 교내 대표로써
+              기능경기대회에 출전하는걸 궁극적인 목표로 삼고 공부하고있어요
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
         <div className="container grid items-center gap-4 px-4 text-center md:px-6 lg:gap-10">
           <div className="space-y-3">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Club Activities
+              NSB는 이런걸 배워요
             </h2>
             <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-              Check out the exciting events and workshops we have planned for
-              this semester.
+              클라우드 서비스를 전혀 몰라도 괜찮아요, 열정만 있다면 선배들과
+              함께 배워 나갈수있어요
             </p>
           </div>
-          <div className="grid w-full grid-cols-1 items-stretch justify-center md:grid-cols-2 gap-4 lg:gap-6">
-            <div className="mx-auto flex w-full items-center justify-center p-4 sm:p-8">
-              <Card>
-                <CardHeader className="flex flex-col items-center">
-                  <CalendarIcon className="h-8 w-8" />
-                  <CardTitle>Workshops</CardTitle>
-                  <CardDescription>
-                    Hands-on sessions with industry experts.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="grid gap-4">
-                  <p>Every Wednesday 3pm-5pm</p>
-                  <p>Location: Room 210</p>
-                </CardContent>
-              </Card>
-            </div>
-            <div className="mx-auto flex w-full items-center justify-center p-4 sm:p-8">
-              <Card>
-                <CardHeader className="flex flex-col items-center">
-                  <UsersIcon className="h-8 w-8" />
-                  <CardTitle>Networking</CardTitle>
-                  <CardDescription>
-                    Connect with professionals in the industry.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="grid gap-4">
-                  <p>Monthly meetups</p>
-                  <p>Next event: March 15th</p>
-                </CardContent>
-              </Card>
-            </div>
-            <div className="mx-auto flex w-full items-center justify-center p-4 sm:p-8">
-              <Card>
-                <CardHeader className="flex flex-col items-center">
-                  <BookIcon className="h-8 w-8" />
-                  <CardTitle>Learning</CardTitle>
-                  <CardDescription>
-                    Educational sessions on the latest tech trends.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="grid gap-4">
-                  <p>Bi-weekly</p>
-                  <p>Topics: AI, Cybersecurity</p>
-                </CardContent>
-              </Card>
-            </div>
+          <div className="grid w-full grid-cols-3 items-stretch justify-center gap-4 lg:gap-6">
+            <Card>
+              <CardHeader className="flex flex-col items-center">
+                <Image src={aws} alt="aws" />
+                <CardTitle>Cloud</CardTitle>
+                <CardDescription>
+                  클라우드 서비스의 핵심기술인 AWS를 배워요
+                </CardDescription>
+              </CardHeader>
+              <CardContent>Set time (to be coordinated)</CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="flex flex-col items-center">
+                <Image src={laptop} alt="aws" />
+                <CardTitle>컴퓨터시스템</CardTitle>
+                <CardDescription>
+                  컴퓨터의 간단한 동작 방식과 클라우드 서비스 구축에 필요한
+                  개념을 배워요
+                </CardDescription>
+              </CardHeader>
+              <CardContent>Set time (to be coordinated)</CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="flex flex-col items-center">
+                <Image src={people} alt="aws" />
+                <CardTitle>네트워킹</CardTitle>
+                <CardDescription>
+                  클라우드 서비스의 핵심기술인 AWS를 배워요
+                </CardDescription>
+              </CardHeader>
+              <CardContent>Everyday!!</CardContent>
+            </Card>
           </div>
         </div>
       </section>
+
+      <section className="w-full py-12 md:py-24 lg:py-32 border-t">
+        <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
+          <div className="space-y-3">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              지난활동들
+            </h2>
+            <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+              NSB에서 보낸 지난 활동들을 확인해보세요.
+            </p>
+          </div>
+          <div className="mx-auto w-full max-w-[900px] grid gap-4 sm:gap-6 lg:grid-cols-2 xl:gap-8">
+            <img
+              alt="Photo"
+              className="rounded-xl object-cover overflow-hidden aspect-[16/9]"
+              height="225"
+              src="/placeholder.svg"
+              width="400"
+            />
+            <img
+              alt="Photo"
+              className="rounded-xl object-cover overflow-hidden aspect-[16/9]"
+              height="225"
+              src="/placeholder.svg"
+              width="400"
+            />
+            <img
+              alt="Photo"
+              className="rounded-xl object-cover overflow-hidden aspect-[16/9]"
+              height="225"
+              src="/placeholder.svg"
+              width="400"
+            />
+            <img
+              alt="Photo"
+              className="rounded-xl object-cover overflow-hidden aspect-[16/9]"
+              height="225"
+              src="/placeholder.svg"
+              width="400"
+            />
+          </div>
+        </div>
+      </section>
+
       <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
         <div className="container grid items-center gap-4 px-4 text-center md:px-6 lg:gap-10">
           <div className="space-y-3">
