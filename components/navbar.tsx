@@ -37,6 +37,9 @@ export function Navbar() {
       <NavigationMenu className="ml-auto flex items-center gap-4 sm:gap-6">
         <NavigationMenuList>
           <NavigationMenuItem>
+            <ModeToggle />
+          </NavigationMenuItem>
+          <NavigationMenuItem>
             <Link href="#" legacyBehavior passHref>
               <NavigationMenuLink
                 className={buttonVariants({ variant: "secondary" })}
@@ -44,9 +47,6 @@ export function Navbar() {
                 지원하기
               </NavigationMenuLink>
             </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <ModeToggle />
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
