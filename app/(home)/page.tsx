@@ -122,35 +122,35 @@ export default function Page() {
               alt="Photo"
               className="rounded-xl object-cover overflow-hidden aspect-[16/9]"
               height="225"
-              src="/placeholder.svg"
+              src="https://cataas.com/cat"
               width="400"
             />
             <img
               alt="Photo"
               className="rounded-xl object-cover overflow-hidden aspect-[16/9]"
               height="225"
-              src="/placeholder.svg"
+              src="https://cataas.com/cat"
               width="400"
             />
             <img
               alt="Photo"
               className="rounded-xl object-cover overflow-hidden aspect-[16/9]"
               height="225"
-              src="/placeholder.svg"
+              src="https://cataas.com/cat"
               width="400"
             />
             <img
               alt="Photo"
               className="rounded-xl object-cover overflow-hidden aspect-[16/9]"
               height="225"
-              src="/placeholder.svg"
+              src="https://cataas.com/cat"
               width="400"
             />
           </div>
         </div>
       </section>
 
-      <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+      {/* <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
         <div className="container grid items-center gap-4 px-4 text-center md:px-6 lg:gap-10">
           <div className="space-y-3">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -243,7 +243,7 @@ export default function Page() {
                         alt="User"
                         className="rounded-full object-cover"
                         height="100"
-                        src="/placeholder.svg"
+                        src="https://cataas.com/cat"
                         style={{
                           aspectRatio: "100/100",
                           objectFit: "cover",
@@ -275,7 +275,7 @@ export default function Page() {
                         alt="User"
                         className="rounded-full object-cover"
                         height="100"
-                        src="/placeholder.svg"
+                        src="https://cataas.com/cat"
                         style={{
                           aspectRatio: "100/100",
                           objectFit: "cover",
@@ -290,27 +290,21 @@ export default function Page() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       <div className="bg-gray-50 border-t border-gray-200 dark:bg-gray-950">
         <div className="container py-12 lg:py-16 grid gap-6 px-4 text-center md:gap-8 lg:gap-12">
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Ready to Join?
+              함께할 준비가 되셨나요?
             </h2>
             <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-              Fill out the form below to sign up for Network Server Build or
-              request more information.
+              지금 지원해보세요! NSB에서 함께 공부하고 성장해나가요
             </p>
           </div>
           <div className="mx-auto max-w-sm space-y-4">
-            <form className="space-y-4">
-              <div className="grid grid-cols-1 gap-4">
-                <Input placeholder="Name" type="text" />
-                <Input placeholder="Email" type="email" />
-                <Input placeholder="Message" type="text" />
-              </div>
-              <Button type="submit">Submit</Button>
-            </form>
+            <Button type="submit" className="py-4 px-10">
+              지원하기
+            </Button>
           </div>
         </div>
       </div>

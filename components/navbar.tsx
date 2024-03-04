@@ -36,7 +36,7 @@ export function Navbar() {
 
       <NavigationMenu className="ml-auto flex items-center gap-4 sm:gap-6">
         <NavigationMenuList>
-          <NavigationMenuItem>
+          {/* <NavigationMenuItem>
             <Link href="/" legacyBehavior passHref>
               <NavigationMenuLink
                 className={buttonVariants({ variant: "ghost" })}
@@ -53,13 +53,13 @@ export function Navbar() {
                 About
               </NavigationMenuLink>
             </Link>
-          </NavigationMenuItem>
+          </NavigationMenuItem> */}
           <NavigationMenuItem>
-            <Link href="/join" legacyBehavior passHref>
+            <Link href="#" legacyBehavior passHref>
               <NavigationMenuLink
-                className={buttonVariants({ variant: "ghost" })}
+                className={buttonVariants({ variant: "secondary" })}
               >
-                Join Now
+                지원하기
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
