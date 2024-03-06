@@ -1,3 +1,8 @@
+import AuthButton from "@/components/AuthButton";
+import { createClient } from "@/utils/supabase/server";
+import ConnectSupabaseSteps from "@/components/tutorial/ConnectSupabaseSteps";
+import SignUpUserSteps from "@/components/tutorial/SignUpUserSteps";
+
 import Link from "next/link";
 import {
   CardTitle,
@@ -19,18 +24,34 @@ import { buttonVariants } from "@/components/ui/button";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-import aws from "@/assets/aws.png";
-import laptop from "@/assets/laptop.png";
-import people from "@/assets/people.png";
+// import aws from "../../public/aws.png";
+// import laptop from "../../public/laptop.png";
+// import people from "../../public/people.png";
 
 import Image from "next/image";
 import { Container } from "@/components/container";
 
 export default function Page() {
+  const canInitSupabaseClient = () => {
+    // This function is just for the interactive tutorial.
+    // Feel free to remove it once you have Supabase connected.
+    try {
+      createClient();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+
+  const isSupabaseConnected = canInitSupabaseClient();
+
   return (
     <>
       <Container>
         <div className="space-y-2 flex flex-col items-center">
+          <div className="flex items-center gap-4 p-10">
+            <p>{isSupabaseConnected ? "Connected" : "Not connected"}</p>
+          </div>
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
             Network Server Build
           </h1>
@@ -38,15 +59,8 @@ export default function Page() {
             교내 자율동아리 NSB 신입부원 모집
           </p>
         </div>
-        <Link
-          href="#"
-          className={cn(
-            buttonVariants({ variant: "secondary" }),
-            "w-fit py-5 px-10"
-          )}
-        >
-          지원하기
-        </Link>
+
+        <Button> {isSupabaseConnected && <AuthButton />}</Button>
       </Container>
 
       <Container>
@@ -74,7 +88,7 @@ export default function Page() {
         <div className="grid w-full grid-cols-1 lg:grid-cols-3 items-stretch justify-center gap-4 lg:gap-6">
           <Card>
             <CardHeader className="flex flex-col items-center">
-              <Image src={aws} alt="aws" />
+              {/* <Image src={aws} alt="aws" /> */}
               <CardTitle>Cloud</CardTitle>
               <CardDescription>
                 클라우드 서비스의 핵심기술인 AWS를 배워요
@@ -84,7 +98,7 @@ export default function Page() {
           </Card>
           <Card>
             <CardHeader className="flex flex-col items-center">
-              <Image src={laptop} alt="aws" />
+              {/* <Image src={laptop} alt="aws" /> */}
               <CardTitle>컴퓨터시스템</CardTitle>
               <CardDescription>
                 컴퓨터의 간단한 동작 방식과 클라우드 서비스 구축에 필요한 개념을
@@ -95,7 +109,7 @@ export default function Page() {
           </Card>
           <Card>
             <CardHeader className="flex flex-col items-center">
-              <Image src={people} alt="aws" />
+              {/* <Image src={people} alt="aws" /> */}
               <CardTitle>네트워킹</CardTitle>
               <CardDescription>
                 클라우드 서비스의 핵심기술인 AWS를 배워요
