@@ -1,4 +1,4 @@
-import AuthButton from "@/components/AuthButton";
+import { AuthButton, JoinButton } from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
 import ConnectSupabaseSteps from "@/components/tutorial/ConnectSupabaseSteps";
 import SignUpUserSteps from "@/components/tutorial/SignUpUserSteps";
@@ -60,7 +60,7 @@ export default function Page() {
           </p>
         </div>
 
-        <Button> {isSupabaseConnected && <AuthButton />}</Button>
+        {isSupabaseConnected && <JoinButton />}
       </Container>
 
       <Container>

@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 
 import { ServerIcon } from "lucide-react";
@@ -8,15 +6,6 @@ import { cn } from "@/lib/utils";
 
 import { ModeToggle } from "./theme-provider";
 
-import { buttonVariants, Button } from "@/components/ui/button";
-
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu";
-
 export function Navbar() {
   return (
     <header
@@ -24,7 +13,7 @@ export function Navbar() {
         // 스크롤시 고정된 해더
         "sticky top-0 z-50",
         // 해더 컨테이너
-        "px-4 lg:px-6 h-14",
+        "px-4 lg:px-6 h-14 items-center",
         "flex flex-col md:flex-row justify-between w-full",
         // 아크릴 효과
         "backdrop-filter backdrop-blur-lg"
@@ -35,22 +24,7 @@ export function Navbar() {
         <p className="text-xl font-bold">NSB</p>
       </Link>
 
-      <NavigationMenu className="ml-auto flex items-center gap-4 sm:gap-6">
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <ModeToggle />
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="#" legacyBehavior passHref>
-              <NavigationMenuLink
-                className={buttonVariants({ variant: "secondary" })}
-              >
-                지원하기
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+      <ModeToggle />
     </header>
   );
 }

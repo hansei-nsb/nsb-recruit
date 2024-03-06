@@ -1,4 +1,4 @@
-import AuthButton from "@/components/AuthButton";
+import { AuthButton } from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
 import FetchDataSteps from "@/components/tutorial/FetchDataSteps";
 import { redirect } from "next/navigation";
@@ -22,6 +22,10 @@ export default async function ProtectedPage() {
     return redirect("/");
   };
 
+  // RecruitForm2024에서 데이터를 가져오기
+  const { data, error } = await supabase.from("RecruitForm2024").select("*");
+  console.log(data, error);
+
   return (
     <div>
       <div className="flex-1 w-full flex flex-col gap-20 items-center">
@@ -36,6 +40,9 @@ export default async function ProtectedPage() {
           </button>
         </form>
       </div>
+
+      <div />
+      <div />
     </div>
   );
 }
