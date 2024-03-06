@@ -13,10 +13,12 @@ const fontSans = FontSans({
   variable: "--font-sans",
 });
 
-import { cn } from "@/lib/utils";
-import { Footer } from "@/components/footer";
+const defaultUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "http://localhost:3000";
 
-export const metadata: Metadata = {
+export const metadat: Metadata = {
+  metadataBase: new URL(defaultUrl),
   title: "NSB",
   description: `Network Server Build, 교내 자율동아리로
     기능경기대회에 출전하기 위해 클라우드
@@ -25,6 +27,9 @@ export const metadata: Metadata = {
     교내 대표로써 기능경기대회에 출전하는 걸
     궁극적인 목표로 삼고 공부하는 동아리입니다.`,
 };
+
+import { cn } from "@/lib/utils";
+import { Footer } from "@/components/footer";
 
 export default function RootLayout({
   children,

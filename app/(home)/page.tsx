@@ -1,3 +1,10 @@
+import DeployButton from "@/components/DeployButton";
+import AuthButton from "@/components/AuthButton";
+import { createClient } from "@/utils/supabase/server";
+import ConnectSupabaseSteps from "@/components/tutorial/ConnectSupabaseSteps";
+import SignUpUserSteps from "@/components/tutorial/SignUpUserSteps";
+import Header from "@/components/Header";
+
 import Link from "next/link";
 import {
   CardTitle,
@@ -19,16 +26,64 @@ import { buttonVariants } from "@/components/ui/button";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-import aws from "@/assets/aws.png";
-import laptop from "@/assets/laptop.png";
-import people from "@/assets/people.png";
+// import aws from "../../public/aws.png";
+// import laptop from "../../public/laptop.png";
+// import people from "../../public/people.png";
 
 import Image from "next/image";
 import { Container } from "@/components/container";
 
 export default function Page() {
+  const canInitSupabaseClient = () => {
+    // This function is just for the interactive tutorial.
+    // Feel free to remove it once you have Supabase connected.
+    try {
+      createClient();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+
+  const isSupabaseConnected = canInitSupabaseClient();
+
   return (
     <>
+      <div className="flex-1 w-full flex flex-col gap-20 items-center">
+        <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
+          <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
+            <DeployButton />
+            {isSupabaseConnected && <AuthButton />}
+          </div>
+        </nav>
+
+        <div className="animate-in flex-1 flex flex-col gap-20 opacity-0 max-w-4xl px-3">
+          <Header />
+          <main className="flex-1 flex flex-col gap-6">
+            <h2 className="font-bold text-4xl mb-4">Next steps</h2>
+            {isSupabaseConnected ? (
+              <SignUpUserSteps />
+            ) : (
+              <ConnectSupabaseSteps />
+            )}
+          </main>
+        </div>
+
+        <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
+          <p>
+            Powered by{" "}
+            <a
+              href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
+              target="_blank"
+              className="font-bold hover:underline"
+              rel="noreferrer"
+            >
+              Supabase
+            </a>
+          </p>
+        </footer>
+      </div>
+
       <Container>
         <div className="space-y-2 flex flex-col items-center">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
@@ -74,7 +129,7 @@ export default function Page() {
         <div className="grid w-full grid-cols-1 lg:grid-cols-3 items-stretch justify-center gap-4 lg:gap-6">
           <Card>
             <CardHeader className="flex flex-col items-center">
-              <Image src={aws} alt="aws" />
+              {/* <Image src={aws} alt="aws" /> */}
               <CardTitle>Cloud</CardTitle>
               <CardDescription>
                 클라우드 서비스의 핵심기술인 AWS를 배워요
@@ -84,7 +139,7 @@ export default function Page() {
           </Card>
           <Card>
             <CardHeader className="flex flex-col items-center">
-              <Image src={laptop} alt="aws" />
+              {/* <Image src={laptop} alt="aws" /> */}
               <CardTitle>컴퓨터시스템</CardTitle>
               <CardDescription>
                 컴퓨터의 간단한 동작 방식과 클라우드 서비스 구축에 필요한 개념을
@@ -95,7 +150,7 @@ export default function Page() {
           </Card>
           <Card>
             <CardHeader className="flex flex-col items-center">
-              <Image src={people} alt="aws" />
+              {/* <Image src={people} alt="aws" /> */}
               <CardTitle>네트워킹</CardTitle>
               <CardDescription>
                 클라우드 서비스의 핵심기술인 AWS를 배워요
