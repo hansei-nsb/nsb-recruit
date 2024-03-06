@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardContent,
   Card,
+  CardFooter,
 } from "@/components/ui/card";
 
 import {
@@ -24,9 +25,9 @@ import { buttonVariants } from "@/components/ui/button";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-// import aws from "../../public/aws.png";
-// import laptop from "../../public/laptop.png";
-// import people from "../../public/people.png";
+import aws from "@/public/aws.png";
+import person from "@/public/person.png";
+import laptop from "@/public/laptop.png";
 
 import Image from "next/image";
 import { Container } from "@/components/container";
@@ -49,9 +50,6 @@ export default function Page() {
     <>
       <Container>
         <div className="space-y-2 flex flex-col items-center">
-          <div className="flex items-center gap-4 p-10">
-            <p>{isSupabaseConnected ? "Connected" : "Not connected"}</p>
-          </div>
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
             Network Server Build
           </h1>
@@ -60,7 +58,11 @@ export default function Page() {
           </p>
         </div>
 
-        {isSupabaseConnected && <JoinButton />}
+        {isSupabaseConnected ? (
+          <JoinButton />
+        ) : (
+          <Button disabled>아직은 지원기간이 아니예요</Button>
+        )}
       </Container>
 
       <Container>
@@ -88,34 +90,44 @@ export default function Page() {
         <div className="grid w-full grid-cols-1 lg:grid-cols-3 items-stretch justify-center gap-4 lg:gap-6">
           <Card>
             <CardHeader className="flex flex-col items-center">
-              {/* <Image src={aws} alt="aws" /> */}
-              <CardTitle>Cloud</CardTitle>
-              <CardDescription>
-                클라우드 서비스의 핵심기술인 AWS를 배워요
-              </CardDescription>
+              <Image src={aws} alt="aws" className="my-3.5" />
             </CardHeader>
-            <CardContent>Set time (to be coordinated)</CardContent>
+            <CardContent className="flex flex-col items-center">
+              <h3 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-3xl">
+                Cloud
+              </h3>
+            </CardContent>
+            <CardFooter className="text-center">
+              클라우드 서비스의 핵심기술인 AWS를 배워요
+            </CardFooter>
           </Card>
+
           <Card>
             <CardHeader className="flex flex-col items-center">
-              {/* <Image src={laptop} alt="aws" /> */}
-              <CardTitle>컴퓨터시스템</CardTitle>
-              <CardDescription>
-                컴퓨터의 간단한 동작 방식과 클라우드 서비스 구축에 필요한 개념을
-                배워요
-              </CardDescription>
+              <Image src={person} alt="person" />
             </CardHeader>
-            <CardContent>Set time (to be coordinated)</CardContent>
+            <CardContent className="flex flex-col items-center">
+              <h3 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-3xl">
+                네트워킹
+              </h3>
+            </CardContent>
+            <CardFooter className="text-center">
+              클라우드 서비스의 핵심기술인 AWS를 배워요
+            </CardFooter>
           </Card>
+
           <Card>
             <CardHeader className="flex flex-col items-center">
-              {/* <Image src={people} alt="aws" /> */}
-              <CardTitle>네트워킹</CardTitle>
-              <CardDescription>
-                클라우드 서비스의 핵심기술인 AWS를 배워요
-              </CardDescription>
+              <Image src={laptop} alt="laptop" />
             </CardHeader>
-            <CardContent>Everyday!!</CardContent>
+            <CardContent className="flex flex-col items-center">
+              <h3 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-3xl">
+                컴퓨터 시스템
+              </h3>
+            </CardContent>
+            <CardFooter className="text-center">
+              컴퓨터의 동작 방식과 클라우드 서비스 구축에 필요한 개념을 배워요
+            </CardFooter>
           </Card>
         </div>
       </Container>
@@ -176,9 +188,7 @@ export default function Page() {
               Q. 기능경기대회는 필수로 참가하는건가요?
             </AccordionTrigger>
             <AccordionContent>
-              A. Lorem Ipsum is simply dummy text of the printing and
-              typesetting industry. Lorem Ipsum has been the industrys standard
-              dummy text ever
+              A. 네, NSB는 기능경기대회에 참가하는걸 목표로 하고있어요.
             </AccordionContent>
           </AccordionItem>
 
@@ -201,9 +211,11 @@ export default function Page() {
           지금 지원해보세요! NSB에서 함께 공부하고 성장해나가요
         </p>
 
-        <Button type="submit" className="py-4 px-10">
-          지원하기
-        </Button>
+        {isSupabaseConnected ? (
+          <JoinButton />
+        ) : (
+          <Button disabled>아직은 지원기간이 아니예요</Button>
+        )}
       </Container>
     </>
   );

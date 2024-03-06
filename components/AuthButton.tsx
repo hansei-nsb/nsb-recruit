@@ -39,14 +39,6 @@ export async function JoinButton() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const signOut = async () => {
-    "use server";
-
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    return redirect("/");
-  };
-
   return user ? (
     <Link className={cn(buttonVariants())} href="/protected">
       지원서 보기
