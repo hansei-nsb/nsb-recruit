@@ -51,8 +51,6 @@ export default function Page() {
         <div className="space-y-2 flex flex-col items-center">
           <div className="flex items-center gap-4 p-10">
             <p>{isSupabaseConnected ? "Connected" : "Not connected"}</p>
-
-            <Button> {isSupabaseConnected && <AuthButton />}</Button>
           </div>
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
             Network Server Build
@@ -61,15 +59,8 @@ export default function Page() {
             교내 자율동아리 NSB 신입부원 모집
           </p>
         </div>
-        <Link
-          href="#"
-          className={cn(
-            buttonVariants({ variant: "secondary" }),
-            "w-fit py-5 px-10"
-          )}
-        >
-          지원하기
-        </Link>
+
+        <Button> {isSupabaseConnected && <AuthButton />}</Button>
       </Container>
 
       <Container>
