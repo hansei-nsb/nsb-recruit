@@ -17,7 +17,7 @@ const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "http://localhost:3000";
 
-export const metadat: Metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
   title: "NSB",
   description: `Network Server Build, 교내 자율동아리로
