@@ -40,7 +40,7 @@ export async function JoinButton() {
   } = await supabase.auth.getUser();
 
   return user ? (
-    <Link className={cn(buttonVariants())} href="/protected">
+    <Link className={cn(buttonVariants())} href="/join">
       지원서 보기
     </Link>
   ) : (
