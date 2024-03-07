@@ -14,16 +14,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
+import { ReloadIcon } from "@radix-ui/react-icons";
+
 import { formSchema } from "./schema";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Container } from "@/components/container";
 import { Textarea } from "@/components/ui/textarea";
+
+import { useState } from "react";
 
 import {
   Select,
@@ -46,6 +47,8 @@ export default function JoinForm({
       ...formdata[0],
     },
   });
+
+  const [wait, setWait] = useState(false);
 
   return (
     <Form {...form}>
@@ -258,7 +261,16 @@ export default function JoinForm({
           )}
         />
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={wait} onClick={() => setWait(true)}>
+          {wait ? (
+            <>
+              <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+              Please wait
+            </>
+          ) : (
+            "제출하기"
+          )}
+        </Button>
       </form>
     </Form>
   );

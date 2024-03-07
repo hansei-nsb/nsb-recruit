@@ -43,7 +43,11 @@ export default async function Page() {
         ])
         .eq("user_id", user.id);
 
-      console.log(error);
+      if (error) {
+        console.log(error);
+      } else {
+        redirect("/join/thanks");
+      }
     } else {
       const { error } = await supabase.from("joinforms").insert([
         {
@@ -52,7 +56,11 @@ export default async function Page() {
         },
       ]);
 
-      console.log(error);
+      if (error) {
+        console.log(error);
+      } else {
+        redirect("/join/thanks");
+      }
     }
   };
 
