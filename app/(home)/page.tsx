@@ -97,7 +97,7 @@ export default function Page() {
                 Cloud
               </h3>
             </CardContent>
-            <CardFooter className="text-center">
+            <CardFooter className="text-center flex justify-center">
               클라우드 서비스의 핵심기술인 AWS를 배워요
             </CardFooter>
           </Card>
@@ -111,7 +111,7 @@ export default function Page() {
                 네트워킹
               </h3>
             </CardContent>
-            <CardFooter className="text-center">
+            <CardFooter className="text-center flex justify-center">
               클라우드 서비스의 핵심기술인 AWS를 배워요
             </CardFooter>
           </Card>
@@ -125,7 +125,7 @@ export default function Page() {
                 컴퓨터 시스템
               </h3>
             </CardContent>
-            <CardFooter className="text-center">
+            <CardFooter className="text-center flex justify-center">
               컴퓨터의 동작 방식과 클라우드 서비스 구축에 필요한 개념을 배워요
             </CardFooter>
           </Card>

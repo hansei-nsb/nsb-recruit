@@ -3,8 +3,14 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
-import { JoinFrom } from "./form";
 import { Container } from "@/components/container";
+import { Textarea } from "@/components/ui/textarea";
+import JoinForm from "./form";
+
+import { formSchema } from "./schema";
+
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default async function Page() {
   const supabase = createClient();
@@ -17,29 +23,22 @@ export default async function Page() {
     return redirect("/login");
   }
 
-  const signOut = async () => {
-    "use server";
+  const { data: formdata } = await supabase.from("joinforms").select();
 
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    return redirect("/");
-  };
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    "use server";
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    console.log(values);
+  }
 
   return (
-    // <div>
-    //   <div className="flex-1 w-full flex flex-col gap-20 items-center">
-    //     login successful!!
-    //   </div>
-
-    //   <div className="flex items-center gap-4">Hey, {user.email}!</div>
-    //   <form action={signOut}>
-    //     <Button>logout</Button>
-    //   </form>
-
-    // </div>
-
     <Container>
-      <JoinFrom />
+      <pre className="relative rounded bg-muted p-4 font-mono text-sm font-semibold">
+        {JSON.stringify(formdata, null, 2)}
+      </pre>
+
+      <JoinForm formdata={formdata} formaction={onSubmit} />
     </Container>
   );
 }
