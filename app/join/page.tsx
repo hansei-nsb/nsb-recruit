@@ -25,20 +25,48 @@ export default async function Page() {
 
   const { data: formdata } = await supabase.from("joinforms").select();
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  const submit = async (values: z.infer<typeof formSchema>) => {
     "use server";
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+
     console.log(values);
-  }
+    const supabase = createClient();
+
+    const { data: formdata } = await supabase.from("joinforms").select();
+
+    if (formdata && formdata.length != 0) {
+      const { error } = await supabase
+        .from("joinforms")
+        .update([
+          {
+            data: values.data,
+          },
+        ])
+        .eq("user_id", user.id);
+
+      if (error) {
+        console.error(error);
+      } else {
+        redirect("/join/thanks");
+      }
+    } else {
+      const { error } = await supabase.from("joinforms").insert([
+        {
+          data: values.data,
+          user_id: user.id,
+        },
+      ]);
+
+      if (error) {
+        console.error(error);
+      } else {
+        redirect("/join/thanks");
+      }
+    }
+  };
 
   return (
     <Container>
-      <pre className="relative rounded bg-muted p-4 font-mono text-sm font-semibold">
-        {JSON.stringify(formdata, null, 2)}
-      </pre>
-
-      <JoinForm formdata={formdata} formaction={onSubmit} />
+      <JoinForm formdata={formdata} formaction={submit} />
     </Container>
   );
 }

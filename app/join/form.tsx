@@ -30,14 +30,17 @@ export default function JoinForm({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      data: formdata ? formdata[0].data : "",
+      data: formdata.length != 0 ? formdata[0].data : "",
     },
   });
 
   return (
     <Form {...form}>
-      {/*  */}
-      <form onSubmit={form.handleSubmit(formaction)} className="space-y-8">
+      <form
+        className="space-y-8"
+        // @ts-ignore
+        action={form.handleSubmit(formaction)}
+      >
         <FormField
           control={form.control}
           name="data"
