@@ -95,12 +95,12 @@ export default function Page() {
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
+                <FormLabel>이름</FormLabel>
                 <FormControl>
                   <Input placeholder="shadcn" {...field} />
                 </FormControl>
                 <FormDescription>
-                  This is your public display name.
+                  성을 포함한 실명을 적어주세요.
                 </FormDescription>
                 <FormMessage />
               </FormItem>

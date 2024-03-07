@@ -38,29 +38,21 @@ export default async function Page() {
         .from("joinforms")
         .update([
           {
-            data: values.data,
+            ...values,
           },
         ])
         .eq("user_id", user.id);
 
-      if (error) {
-        console.error(error);
-      } else {
-        redirect("/join/thanks");
-      }
+      console.log(error);
     } else {
       const { error } = await supabase.from("joinforms").insert([
         {
-          data: values.data,
+          ...values,
           user_id: user.id,
         },
       ]);
 
-      if (error) {
-        console.error(error);
-      } else {
-        redirect("/join/thanks");
-      }
+      console.log(error);
     }
   };
 
