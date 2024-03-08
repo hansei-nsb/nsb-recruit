@@ -23,6 +23,7 @@ import { Container } from "@/components/container";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 import { updateName } from "@/utils/auth-helpers/server";
 import { handleRequest } from "@/utils/auth-helpers/client";
@@ -63,6 +64,8 @@ export default function JoinForm({ formdata }: { formdata: any }) {
         className="space-y-8"
         // @ts-ignore
         // action={form.handleSubmit(formaction)}
+
+        onSubmit={(e) => handleSubmit(e)}
       >
         <FormField
           control={form.control}
@@ -268,7 +271,20 @@ export default function JoinForm({ formdata }: { formdata: any }) {
           )}
         />
 
-        <Button type="submit">Submit</Button>
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          onClick={() => setIsSubmitting(true)}
+        >
+          {isSubmitting ? (
+            <>
+              <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+              Please wait
+            </>
+          ) : (
+            "제출하기"
+          )}
+        </Button>
       </form>
     </Form>
   );
