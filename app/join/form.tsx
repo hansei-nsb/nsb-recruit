@@ -65,7 +65,11 @@ export default function JoinForm({ formdata }: { formdata: any }) {
         // @ts-ignore
         // action={form.handleSubmit(formaction)}
 
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={form.handleSubmit((data) => {
+          console.log(data);
+
+          setIsSubmitting(false);
+        })}
       >
         <FormField
           control={form.control}
