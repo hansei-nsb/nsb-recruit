@@ -20,10 +20,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useToast } from "@/components/ui/use-toast";
 
 import { updateJoinForms } from "@/utils/auth-helpers/server";
-import { handleRequest } from "@/utils/auth-helpers/client";
-import { useRouter } from "next/navigation";
 
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
@@ -56,7 +55,7 @@ const formSchema = z.object({
   self_introduction: z.string(),
   motivation: z.string(),
   ability: z.string(),
-  mbti: z.string().optional(),
+  mbti: z.string().optional().nullable(),
   // agreement boolean, true가 아니면 submit 못하게 막기
   agreement: z.boolean().refine((val) => val === true, {
     message: "Please read and accept the terms and conditions",
@@ -72,11 +71,11 @@ export default function JoinForm({ formdata }: { formdata: any }) {
     },
   });
 
-  const router = useRouter();
+  const { toast } = useToast();
+
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     setIsSubmitting(true);
 
     const formdataWithoutId = { ...formdata[0] };
@@ -94,14 +93,15 @@ export default function JoinForm({ formdata }: { formdata: any }) {
 
     if (JSON.stringify(formdataWithoutId_sort) == JSON.stringify(values_sort)) {
       console.log("same");
+
+      toast({
+        title: "변경 사항이 없습니다.",
+      });
+      setIsSubmitting(false);
     } else {
       console.log("different");
       updateJoinForms(values);
     }
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-    }, 1000);
   }
 
   return (

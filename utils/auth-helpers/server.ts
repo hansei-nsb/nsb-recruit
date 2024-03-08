@@ -359,7 +359,7 @@ export async function updateJoinForms(values: any) {
       if (error) {
         console.log(error);
       } else {
-        redirect("/join/thanks");
+        redirect("/join/thanks?update=true");
       }
     } else {
       const { error } = await supabase.from("joinforms").insert([
