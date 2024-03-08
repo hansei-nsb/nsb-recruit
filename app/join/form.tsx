@@ -16,7 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
+import { Input, InputWithText } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -32,29 +32,20 @@ import { useForm } from "react-hook-form";
 
 const formSchema = z.object({
   grade: z.coerce
-    .number({
-      required_error: "학년을 입력해주세요.",
-      invalid_type_error: "1에서 3사이의 숫자를 입력해주세요.",
-    })
-    .gte(1)
-    .lte(3),
+    .number({ invalid_type_error: "필수 입력사항입니다." })
+    .gte(1, "1 이상의 숫자를 입력해주세요.")
+    .lte(3, "3 이하의 숫자를 입력해주세요."),
   class: z.coerce
-    .number({
-      required_error: "반을 입력해주세요.",
-      invalid_type_error: "1 이상의 숫자를 입력해주세요.",
-    })
-    .gte(1),
+    .number({ invalid_type_error: "필수 입력사항입니다." })
+    .gte(1, "1 이상의 숫자를 입력해주세요."),
   number: z.coerce
-    .number({
-      required_error: "반을 입력해주세요.",
-      invalid_type_error: "1 이상의 숫자를 입력해주세요.",
-    })
-    .gte(1),
-  name: z.string(),
-  department: z.string(),
-  self_introduction: z.string(),
-  motivation: z.string(),
-  ability: z.string(),
+    .number({ invalid_type_error: "필수 입력사항입니다." })
+    .gte(1, "1 이상의 숫자를 입력해주세요."),
+  name: z.string({ required_error: "이름을 입력해주세요." }),
+  department: z.string({ required_error: "학과를 선택해주세요" }),
+  self_introduction: z.string({ required_error: "필수 입력사항입니다." }),
+  motivation: z.string({ required_error: "필수 입력사항입니다." }),
+  ability: z.string({ required_error: "필수 입력사항입니다." }),
   mbti: z.string().optional().nullable(),
   // agreement boolean, true가 아니면 submit 못하게 막기
   agreement: z.boolean().refine((val) => val === true, {
@@ -107,33 +98,17 @@ export default function JoinForm({ formdata }: { formdata: any }) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>이름</FormLabel>
-              <FormControl>
-                <Input placeholder="typing username.." {...field} />
-              </FormControl>
-              <FormDescription>
-                성을 포함한 실명을 입력해주세요.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <div className="flex flex-row space-x-4">
+        <div className="space-y-4">
           <FormField
             control={form.control}
-            name="grade"
+            name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>학년</FormLabel>
+                <FormLabel>이름</FormLabel>
                 <FormControl>
                   <Input
-                    type="number"
-                    placeholder="typing username.."
+                    placeholder="
+                성을 포함한 실명을 입력해주세요."
                     {...field}
                   />
                 </FormControl>
@@ -141,42 +116,58 @@ export default function JoinForm({ formdata }: { formdata: any }) {
               </FormItem>
             )}
           />
+          <div className="flex flex-row space-x-4">
+            <FormField
+              control={form.control}
+              name="grade"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <InputWithText
+                      placeholder="1~3 사이의 숫자"
+                      text="학년"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <FormField
-            control={form.control}
-            name="class"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>반</FormLabel>
-                <FormControl>
-                  <Input
-                    type="number"
-                    placeholder="typing username.."
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            <FormField
+              control={form.control}
+              name="class"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <InputWithText
+                      placeholder="1, 2, ..."
+                      text="반"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <FormField
-            control={form.control}
-            name="number"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>번호</FormLabel>
-                <FormControl>
-                  <Input
-                    type="number"
-                    placeholder="typing username.."
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            <FormField
+              control={form.control}
+              name="number"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <InputWithText
+                      placeholder="1, 2, ..."
+                      text="번"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
         </div>
         <FormField
           control={form.control}
@@ -197,9 +188,6 @@ export default function JoinForm({ formdata }: { formdata: any }) {
                   <SelectItem value="hs">해킹보안과</SelectItem>
                 </SelectContent>
               </Select>
-              <FormDescription>
-                You can manage email addresses in your{" "}
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -217,9 +205,6 @@ export default function JoinForm({ formdata }: { formdata: any }) {
                   {...field}
                 />
               </FormControl>
-              <FormDescription>
-                You can <span>@mention</span> other users and organizations.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -237,9 +222,6 @@ export default function JoinForm({ formdata }: { formdata: any }) {
                   {...field}
                 />
               </FormControl>
-              <FormDescription>
-                You can <span>@mention</span> other users and organizations.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -257,9 +239,6 @@ export default function JoinForm({ formdata }: { formdata: any }) {
                   {...field}
                 />
               </FormControl>
-              <FormDescription>
-                You can <span>@mention</span> other users and organizations.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -272,7 +251,7 @@ export default function JoinForm({ formdata }: { formdata: any }) {
               <FormLabel>MBTI</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="INFJ..? ESTJ..? 당신의 MBTI를 적어주세요."
+                  placeholder="INFJ? ESTJ? 당신의 MBTI를 적어주세요."
                   {...field}
                   value={field.value || ""}
                 />
@@ -289,7 +268,7 @@ export default function JoinForm({ formdata }: { formdata: any }) {
           control={form.control}
           name="agreement"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
+            <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-4 shadow">
               <FormControl>
                 <Checkbox
                   checked={field.value === true}
@@ -299,13 +278,13 @@ export default function JoinForm({ formdata }: { formdata: any }) {
               <div className="space-y-1 leading-nformdataWithoutId">
                 <FormLabel>기능경기대회 참여에 동의하십니까?</FormLabel>
                 <FormDescription>
-                  기능경기대회 참여에 동의하시면 제출하기 버튼이 활성화됩니다.
+                  기능경기대회 참여에 동의하여야 지원서를 제출할 수 있습니다.
                 </FormDescription>
               </div>
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isSubmitting}>
+        <Button type="submit" disabled={isSubmitting} className="w-full">
           {isSubmitting ? (
             <>
               <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />

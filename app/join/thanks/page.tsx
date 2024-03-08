@@ -1,24 +1,31 @@
 "use client";
 
-import { redirect, useParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/container";
+import Fire from "@/components/confetti";
+import { useEffect } from "react";
 
 export default async function Page() {
-  const params = useParams();
-  const isUpdate = params?.update !== "true";
+  const searchParams = useSearchParams();
+
+  const isUpdate = searchParams.get("update") === "true";
   const router = useRouter();
+
+  useEffect(() => {
+    Fire();
+  }, []);
 
   return (
     <Container>
       <h1 className="text-4xl font-bold tracking-tighter">
-        "Thanks for joining!"
+        지원해주셔서 감사합니다. 🎉
       </h1>
       {isUpdate ? (
-        <p>Your form has been updated.</p>
+        <p>지원자님의 양식이 업데이트되었습니다.</p>
       ) : (
-        <p>Your form has been submitted.</p>
+        <p>지원자님의 양식이 제출되었습니다.</p>
       )}
       <Button
         onClick={() => {

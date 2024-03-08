@@ -56,6 +56,7 @@ export default async function Page() {
 
   return (
     <Container>
+      <h1 className="text-3xl font-bold">NSB 동아리 지원서</h1>
       <JoinForm formdata={formdata} />
     </Container>
   );

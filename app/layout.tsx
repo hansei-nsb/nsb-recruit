@@ -53,9 +53,8 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
-          <Footer />
-
           <Toaster />
+          <Footer />
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
