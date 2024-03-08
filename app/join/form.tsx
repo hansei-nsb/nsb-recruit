@@ -1,9 +1,5 @@
 "use client";
 
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-
-import { useForm } from "react-hook-form";
 import {
   Form,
   FormField,
@@ -13,18 +9,6 @@ import {
   FormDescription,
   FormMessage,
 } from "@/components/ui/form";
-
-import { formSchema } from "./schema";
-
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Container } from "@/components/container";
-import { Textarea } from "@/components/ui/textarea";
-
 import {
   Select,
   SelectContent,
@@ -32,14 +16,25 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Container } from "@/components/container";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-export default function JoinForm({
-  formdata,
-  formaction,
-}: {
-  formdata: any;
-  formaction: any;
-}) {
+import { updateName } from "@/utils/auth-helpers/server";
+import { handleRequest } from "@/utils/auth-helpers/client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+
+import { formSchema } from "./schema";
+
+export default function JoinForm({ formdata }: { formdata: any }) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,12 +42,27 @@ export default function JoinForm({
     },
   });
 
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setIsSubmitting(true);
+    // Check if the new name is the same as the old name
+    if (e.currentTarget.fullName.value === userName) {
+      e.preventDefault();
+      setIsSubmitting(false);
+      return;
+    }
+    handleRequest(e, updateName, router);
+    setIsSubmitting(false);
+  };
+
   return (
     <Form {...form}>
       <form
         className="space-y-8"
         // @ts-ignore
-        action={form.handleSubmit(formaction)}
+        // action={form.handleSubmit(formaction)}
       >
         <FormField
           control={form.control}
