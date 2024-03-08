@@ -32,20 +32,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 const formSchema = z.object({
-  grade: z
+  grade: z.coerce
     .number({
       required_error: "학년을 입력해주세요.",
       invalid_type_error: "1에서 3사이의 숫자를 입력해주세요.",
     })
     .gte(1)
     .lte(3),
-  class: z
+  class: z.coerce
     .number({
       required_error: "반을 입력해주세요.",
       invalid_type_error: "1 이상의 숫자를 입력해주세요.",
     })
     .gte(1),
-  number: z
+  number: z.coerce
     .number({
       required_error: "반을 입력해주세요.",
       invalid_type_error: "1 이상의 숫자를 입력해주세요.",
