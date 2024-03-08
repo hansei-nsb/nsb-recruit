@@ -6,13 +6,23 @@ import { SubmitButton } from "./submit-button";
 
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
 
+import { Button } from "@/components/ui/button";
+
 import { getURL } from "@/utils/helpers";
+import { AlertCircleIcon } from "lucide-react";
 
 export default function Login({
   searchParams,
 }: {
   searchParams: { message: string };
 }) {
+  const messagemap: {
+    [key: string]: string;
+  } = {
+    "wrong-input": "이메일 또는 비밀번호가 잘못되었습니다. 다시 시도해주세요.",
+    "email-sent": "확인 이메일을 전송하였습니다. 메일함을 확인해주세요.",
+  };
+
   const signIn = async (formData: FormData) => {
     "use server";
 
@@ -26,32 +36,22 @@ export default function Login({
     });
 
     if (error) {
-      return redirect("/login?message=Could not authenticate user");
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: getURL("/auth/callback"),
+        },
+      });
+
+      if (error) {
+        return redirect("/login?message=wrong-input");
+      } else {
+        return redirect("/login?message=email-sent");
+      }
     }
 
     return redirect("/join");
-  };
-
-  const signUp = async (formData: FormData) => {
-    "use server";
-
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const supabase = createClient();
-
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: getURL("/auth/callback"),
-      },
-    });
-
-    if (error) {
-      return redirect("/login?message=Could not authenticate user");
-    }
-
-    return redirect("/login?message=Check email to continue sign in process");
   };
 
   return (
@@ -80,19 +80,14 @@ export default function Login({
           formAction={signIn}
           className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2"
         >
-          Sign In
-        </SubmitButton>
-        <SubmitButton
-          formAction={signUp}
-          className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
-        >
-          Sign Up
+          이메일로 로그인하기
         </SubmitButton>
 
         {searchParams?.message && (
-          <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
-            {searchParams.message}
-          </p>
+          <Button variant="destructive" disabled className="py-8">
+            <AlertCircleIcon className="w-6 h-6 mr-2" />
+            {messagemap[searchParams.message]}
+          </Button>
         )}
       </form>
     </div>
