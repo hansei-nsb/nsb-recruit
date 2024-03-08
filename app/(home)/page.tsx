@@ -1,12 +1,7 @@
 import { AuthButton, JoinButton } from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
-import ConnectSupabaseSteps from "@/components/tutorial/ConnectSupabaseSteps";
-import SignUpUserSteps from "@/components/tutorial/SignUpUserSteps";
 
-import Link from "next/link";
 import {
-  CardTitle,
-  CardDescription,
   CardHeader,
   CardContent,
   Card,
@@ -20,10 +15,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import { buttonVariants } from "@/components/ui/button";
-
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 import aws from "@/public/aws.png";
 import person from "@/public/person.png";

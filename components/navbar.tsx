@@ -5,6 +5,7 @@ import { ServerIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { ModeToggle } from "./theme-provider";
+import { AuthButton } from "./AuthButton";
 
 export function Navbar() {
   return (
@@ -24,7 +25,10 @@ export function Navbar() {
         <p className="text-xl font-bold">NSB</p>
       </Link>
 
-      <ModeToggle />
+      <div className="flex items-center gap-1">
+        <ModeToggle />
+        <AuthButton />
+      </div>
     </header>
   );
 }

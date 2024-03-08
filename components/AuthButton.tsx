@@ -1,10 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { buttonVariants, Button } from "./ui/button";
+import { buttonVariants } from "./ui/button";
 import { cn } from "@/lib/utils";
-
-// import { usePathname } from "next/navigation";
 
 export async function AuthButton() {
   const supabase = createClient();
@@ -13,21 +10,25 @@ export async function AuthButton() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // const pathname = usePathname();
-
-  const signOut = async () => {
-    "use server";
-
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    return redirect("/");
-  };
-
   return user ? (
-    <Button onClick={signOut}>로그아웃</Button>
+    <Link
+      className={cn(
+        buttonVariants({ variant: "ghost", size: "icon" }),
+        "w-fit px-4"
+      )}
+      href="/logout"
+    >
+      로그아웃
+    </Link>
   ) : (
-    <Link className={buttonVariants()} href="/login">
-      로그인
+    <Link
+      className={cn(
+        buttonVariants({ variant: "ghost", size: "icon" }),
+        "w-fit px-4"
+      )}
+      href="/login"
+    >
+      지원하기
     </Link>
   );
 }
