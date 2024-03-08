@@ -7,8 +7,6 @@ import { Container } from "@/components/container";
 import { Textarea } from "@/components/ui/textarea";
 import JoinForm from "./form";
 
-import { formSchema } from "./schema";
-
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 

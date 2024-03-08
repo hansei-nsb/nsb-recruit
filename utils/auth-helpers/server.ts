@@ -334,3 +334,46 @@ export async function updateName(formData: FormData) {
     );
   }
 }
+
+export async function updateJoinForms(values: any) {
+  console.log(values);
+  const supabase = createClient();
+
+  const { data: formdata } = await supabase.from("joinforms").select();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user?.id != null) {
+    if (formdata && formdata.length != 0) {
+      const { error } = await supabase
+        .from("joinforms")
+        .update([
+          {
+            ...values,
+          },
+        ])
+        .eq("user_id", user.id);
+
+      if (error) {
+        console.log(error);
+      } else {
+        redirect("/join/thanks");
+      }
+    } else {
+      const { error } = await supabase.from("joinforms").insert([
+        {
+          ...values,
+          user_id: user.id,
+        },
+      ]);
+
+      if (error) {
+        console.log(error);
+      } else {
+        redirect("/join/thanks");
+      }
+    }
+  }
+}

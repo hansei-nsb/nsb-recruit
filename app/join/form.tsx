@@ -16,26 +16,55 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Container } from "@/components/container";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { ReloadIcon } from "@radix-ui/react-icons";
 
-import { updateName } from "@/utils/auth-helpers/server";
+import { updateJoinForms } from "@/utils/auth-helpers/server";
 import { handleRequest } from "@/utils/auth-helpers/client";
 import { useRouter } from "next/navigation";
+
+import { ReloadIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-import { formSchema } from "./schema";
+const formSchema = z.object({
+  grade: z
+    .number({
+      required_error: "학년을 입력해주세요.",
+      invalid_type_error: "1에서 3사이의 숫자를 입력해주세요.",
+    })
+    .gte(1)
+    .lte(3),
+  class: z
+    .number({
+      required_error: "반을 입력해주세요.",
+      invalid_type_error: "1 이상의 숫자를 입력해주세요.",
+    })
+    .gte(1),
+  number: z
+    .number({
+      required_error: "반을 입력해주세요.",
+      invalid_type_error: "1 이상의 숫자를 입력해주세요.",
+    })
+    .gte(1),
+  name: z.string(),
+  department: z.string(),
+  self_introduction: z.string(),
+  motivation: z.string(),
+  ability: z.string(),
+  mbti: z.string().optional(),
+  // agreement boolean, true가 아니면 submit 못하게 막기
+  agreement: z.boolean().refine((val) => val === true, {
+    message: "Please read and accept the terms and conditions",
+  }),
+});
 
 export default function JoinForm({ formdata }: { formdata: any }) {
+  // export default function JoinForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,32 +74,39 @@ export default function JoinForm({ formdata }: { formdata: any }) {
 
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
     setIsSubmitting(true);
-    // Check if the new name is the same as the old name
-    if (e.currentTarget.fullName.value === userName) {
-      e.preventDefault();
-      setIsSubmitting(false);
-      return;
+
+    const formdataWithoutId = { ...formdata[0] };
+    delete formdataWithoutId.id;
+    delete formdataWithoutId.user_id;
+    delete formdataWithoutId.created_at;
+
+    let formdataWithoutId_sort = Object.keys(formdataWithoutId)
+      .sort() // @ts-ignore
+      .reduce((obj, key) => ((obj[key] = formdataWithoutId[key]), obj), {});
+
+    let values_sort = Object.keys(values)
+      .sort() // @ts-ignore
+      .reduce((obj, key) => ((obj[key] = values[key]), obj), {});
+
+    if (JSON.stringify(formdataWithoutId_sort) == JSON.stringify(values_sort)) {
+      console.log("same");
+    } else {
+      console.log("different");
+      updateJoinForms(values);
     }
-    handleRequest(e, updateName, router);
-    setIsSubmitting(false);
-  };
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 1000);
+  }
 
   return (
     <Form {...form}>
-      <form
-        className="space-y-8"
-        // @ts-ignore
-        // action={form.handleSubmit(formaction)}
-
-        onSubmit={form.handleSubmit((data) => {
-          console.log(data);
-
-          setIsSubmitting(false);
-        })}
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
           name="name"
@@ -87,7 +123,6 @@ export default function JoinForm({ formdata }: { formdata: any }) {
             </FormItem>
           )}
         />
-
         <div className="flex flex-row space-x-4">
           <FormField
             control={form.control}
@@ -143,7 +178,6 @@ export default function JoinForm({ formdata }: { formdata: any }) {
             )}
           />
         </div>
-
         <FormField
           control={form.control}
           name="department"
@@ -153,13 +187,14 @@ export default function JoinForm({ formdata }: { formdata: any }) {
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a verified email to display" />
+                    <SelectValue placeholder="자신의 전공학과를 선택해주세요." />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="m@example.com">m@example.com</SelectItem>
-                  <SelectItem value="m@google.com">m@google.com</SelectItem>
-                  <SelectItem value="m@support.com">m@support.com</SelectItem>
+                  <SelectItem value="cs">클라우드보안과</SelectItem>
+                  <SelectItem value="mg">메타버스게임과</SelectItem>
+                  <SelectItem value="ns">네트워크보안과</SelectItem>
+                  <SelectItem value="hs">해킹보안과</SelectItem>
                 </SelectContent>
               </Select>
               <FormDescription>
@@ -169,7 +204,6 @@ export default function JoinForm({ formdata }: { formdata: any }) {
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="self_introduction"
@@ -179,7 +213,7 @@ export default function JoinForm({ formdata }: { formdata: any }) {
               <FormControl>
                 <Textarea
                   placeholder="Tell us a little bit about yourself"
-                  className="resize-none"
+                  className="resize-nformdataWithoutId"
                   {...field}
                 />
               </FormControl>
@@ -190,7 +224,6 @@ export default function JoinForm({ formdata }: { formdata: any }) {
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="motivation"
@@ -200,7 +233,7 @@ export default function JoinForm({ formdata }: { formdata: any }) {
               <FormControl>
                 <Textarea
                   placeholder="Tell us a little bit about yourself"
-                  className="resize-none"
+                  className="resize-nformdataWithoutId"
                   {...field}
                 />
               </FormControl>
@@ -211,7 +244,6 @@ export default function JoinForm({ formdata }: { formdata: any }) {
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="ability"
@@ -221,12 +253,32 @@ export default function JoinForm({ formdata }: { formdata: any }) {
               <FormControl>
                 <Textarea
                   placeholder="Tell us a little bit about yourself"
-                  className="resize-none"
+                  className="resize-nformdataWithoutId"
                   {...field}
                 />
               </FormControl>
               <FormDescription>
                 You can <span>@mention</span> other users and organizations.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="mbti"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>MBTI</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="INFJ..? ESTJ..? 당신의 MBTI를 적어주세요."
+                  {...field}
+                  value={field.value || ""}
+                />
+              </FormControl>
+              <FormDescription>
+                재미를 위해서 수집하고 있어요. 기입하지 않으셔도 됩니다.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -244,42 +296,16 @@ export default function JoinForm({ formdata }: { formdata: any }) {
                   onCheckedChange={field.onChange}
                 />
               </FormControl>
-              <div className="space-y-1 leading-none">
+              <div className="space-y-1 leading-nformdataWithoutId">
                 <FormLabel>기능경기대회 참여에 동의하십니까?</FormLabel>
                 <FormDescription>
-                  You can manage your mobile notifications in the
+                  기능경기대회 참여에 동의하시면 제출하기 버튼이 활성화됩니다.
                 </FormDescription>
               </div>
             </FormItem>
           )}
         />
-
-        <FormField
-          control={form.control}
-          name="mbti"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>MBTI</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="typing username.."
-                  {...field}
-                  value={field.value || ""}
-                />
-              </FormControl>
-              <FormDescription>
-                성을 포함한 실명을 입력해주세요.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <Button
-          type="submit"
-          disabled={isSubmitting}
-          onClick={() => setIsSubmitting(true)}
-        >
+        <Button type="submit" disabled={isSubmitting}>
           {isSubmitting ? (
             <>
               <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
