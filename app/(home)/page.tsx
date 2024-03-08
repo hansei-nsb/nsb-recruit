@@ -41,6 +41,13 @@ export default function Page() {
   return (
     <>
       <Container>
+        <header className="h-fit overflow-clip bg-gradient-to-bpx-12">
+          <h1 className="animate-fade-out-down supports-no-scroll-driven-animations:animate-none max-w-[14ch] text-5xl font-bold leading-[1] [animation-range:0px_300px] [animation-timeline:scroll()] md:text-[120px]">
+            Scroll driven animations are the future.
+          </h1>
+        </header>
+      </Container>
+      <Container>
         <div className="space-y-2 flex flex-col items-center">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
             Network Server Build
