@@ -23,37 +23,6 @@ export default async function Page() {
 
   const { data: formdata } = await supabase.from("joinforms").select();
 
-  // const submit = async (values: z.infer<typeof formSchema>) => {
-  //   "use server";
-
-  //   console.log(values);
-  //   const supabase = createClient();
-
-  //   const { data: formdata } = await supabase.from("joinforms").select();
-
-  //   if (formdata && formdata.length != 0) {
-  //     const { error } = await supabase
-  //       .from("joinforms")
-  //       .update([
-  //         {
-  //           ...values,
-  //         },
-  //       ])
-  //       .eq("user_id", user.id);
-
-  //     console.log(error);
-  //   } else {
-  //     const { error } = await supabase.from("joinforms").insert([
-  //       {
-  //         ...values,
-  //         user_id: user.id,
-  //       },
-  //     ]);
-
-  //     console.log(error);
-  //   }
-  // };
-
   return (
     <Container>
       <h1 className="text-3xl font-bold">NSB 동아리 지원서</h1>

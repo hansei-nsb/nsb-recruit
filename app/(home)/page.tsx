@@ -49,7 +49,7 @@ export default function Page() {
       </Container> */}
       <Container>
         <div className="space-y-2 flex flex-col items-center">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-nowrap">
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-nowrap">
             Network Server Build
           </h1>
           <p className="mx-auto max-w-2xl text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
@@ -68,7 +68,7 @@ export default function Page() {
         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
           NSB란?
         </h2>
-        <p className="mx-auto text-center max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+        <p className="mx-auto text-center  text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
           NSB는 교내 자율동아리로 기능경기대회 에 출전하는 동아리에요
           기능경기대회에 출전하기 위해 클라우드 서비스의 핵심이해와 클라우드
           서비스, 네트워크 구축 및 컴퓨터 시스템을 배워 교내 대표로써
@@ -81,7 +81,7 @@ export default function Page() {
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             NSB는 이런걸 배워요
           </h2>
-          <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+          <p className="mx-auto  text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
             클라우드 서비스를 전혀 몰라도 괜찮아요, 열정만 있다면 선배들과 함께
             배워 나갈수있어요
           </p>
@@ -111,7 +111,7 @@ export default function Page() {
               </h3>
             </CardContent>
             <CardFooter className="text-center flex justify-center">
-              클라우드 서비스의 핵심기술인 AWS를 배워요
+              선배들과 늘 행복한 시간을 보내요~ (진짜 행복함)
             </CardFooter>
           </Card>
 
