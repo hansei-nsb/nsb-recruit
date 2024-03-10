@@ -43,9 +43,30 @@ const formSchema = z.object({
     .gte(1, "1 이상의 숫자를 입력해주세요."),
   name: z.string({ required_error: "이름을 입력해주세요." }),
   department: z.string({ required_error: "학과를 선택해주세요" }),
-  self_introduction: z.string({ required_error: "필수 입력사항입니다." }),
-  motivation: z.string({ required_error: "필수 입력사항입니다." }),
-  ability: z.string({ required_error: "필수 입력사항입니다." }),
+  self_introduction: z
+    .string({ required_error: "필수 입력사항입니다." })
+    .min(30, {
+      message: "30자 이상 입력해주세요.",
+    })
+    .max(500, {
+      message: "500자 이하로 입력해주세요.",
+    }),
+  motivation: z
+    .string({ required_error: "필수 입력사항입니다." })
+    .min(30, {
+      message: "30자 이상 입력해주세요.",
+    })
+    .max(500, {
+      message: "500자 이하로 입력해주세요.",
+    }),
+  ability: z
+    .string({ required_error: "필수 입력사항입니다." })
+    .min(30, {
+      message: "30자 이상 입력해주세요.",
+    })
+    .max(500, {
+      message: "500자 이하로 입력해주세요.",
+    }),
   mbti: z.string().optional().nullable(),
   // agreement boolean, true가 아니면 submit 못하게 막기
   agreement: z.boolean().refine((val) => val === true, {
@@ -200,7 +221,7 @@ export default function JoinForm({ formdata }: { formdata: any }) {
               <FormLabel>자기 소개</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Tell us a little bit about yourself"
+                  placeholder="자유롭게 자신을 소개해주세요."
                   className="resize-nformdataWithoutId"
                   {...field}
                 />
@@ -217,7 +238,7 @@ export default function JoinForm({ formdata }: { formdata: any }) {
               <FormLabel>지원 동기</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Tell us a little bit about yourself"
+                  placeholder="지원 동기를 적어주세요."
                   className="resize-nformdataWithoutId"
                   {...field}
                 />
@@ -234,7 +255,7 @@ export default function JoinForm({ formdata }: { formdata: any }) {
               <FormLabel>자기 역량</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Tell us a little bit about yourself"
+                  placeholder="진행해본 프로젝트나 기술에 대한 경험이 있다면 적어주세요. 깃허브 레포 링크도 좋아요 :)"
                   className="resize-nformdataWithoutId"
                   {...field}
                 />

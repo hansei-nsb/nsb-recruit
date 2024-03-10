@@ -1,4 +1,4 @@
-import { AuthButton, JoinButton } from "@/components/AuthButton";
+import { JoinButton } from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
 
 import {
@@ -143,7 +143,8 @@ export default function Page() {
           <Image
             alt="Photo"
             className="rounded-xl object-cover overflow-hidden aspect-[16/9] col-span-2"
-            src="/landing/i-3.jpg"
+            src={require("@/public/landing/i-3.jpg")}
+            placeholder="blur"
             width={10000}
             height={10000}
           />
@@ -151,7 +152,8 @@ export default function Page() {
           <Image
             alt="Photo"
             className="rounded-xl object-cover overflow-hidden aspect-[16/9] col-span-2"
-            src="/landing/i-1.jpg"
+            src={require("@/public/landing/i-2.jpg")}
+            placeholder="blur"
             width={10000}
             height={10000}
           />
@@ -160,7 +162,8 @@ export default function Page() {
           <Image
             alt="Photo"
             className="rounded-xl object-cover overflow-hidden aspect-[16/9] col-span-2"
-            src="/landing/i-4.jpg"
+            src={require("@/public/landing/i-4.jpg")}
+            placeholder="blur"
             width={10000}
             height={10000}
           />
