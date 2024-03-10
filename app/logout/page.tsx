@@ -25,12 +25,12 @@ export default async function Page() {
 
   return (
     <Container>
-      <div className="flex items-center gap-4">Hey, {user.email}!</div>
-      <h1 className="text-4xl font-bold tracking-tighter">
-        you really want to logout?
+      <div className="flex items-center gap-4">hey, {user.email}!</div>
+      <h1 className="text-3xl font-bold tracking-tighter text-nowrap">
+        진짜 로그아웃 하실 건가요?
       </h1>
       <form action={signOut}>
-        <Button>logout</Button>
+        <Button>로그아웃</Button>
       </form>
     </Container>
   );

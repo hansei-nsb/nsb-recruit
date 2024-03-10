@@ -24,7 +24,7 @@ export function SubmitButton({ children, ...props }: Props) {
       {isPending ? (
         <>
           <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-          Please wait
+          잠시만 기다려주세요...
         </>
       ) : (
         children

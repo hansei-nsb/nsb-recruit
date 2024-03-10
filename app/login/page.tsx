@@ -19,8 +19,8 @@ export default function Login({
   const messagemap: {
     [key: string]: string;
   } = {
-    "wrong-input": "이메일 또는 비밀번호가 잘못되었습니다. 다시 시도해주세요.",
-    "email-sent": "확인 이메일을 전송하였습니다. 메일함을 확인해주세요.",
+    "wrong-input": "이메일 또는 비밀번호가 잘못되었습니다.",
+    "email-sent": "확인 이메일을 전송하였습니다.",
   };
 
   const signIn = async (formData: FormData) => {
@@ -58,16 +58,16 @@ export default function Login({
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
         <label className="text-md" htmlFor="email">
-          Email
+          이메일
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          name="email"
+          name="이메일"
           placeholder="you@example.com"
           required
         />
         <label className="text-md" htmlFor="password">
-          Password
+          비밀번호
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"

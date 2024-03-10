@@ -40,16 +40,16 @@ export default function Page() {
 
   return (
     <>
-      <Container>
+      {/* <Container>
         <header className="h-fit overflow-clip bg-gradient-to-bpx-12">
           <h1 className="animate-fade-out-down supports-no-scroll-driven-animations:animate-none max-w-[14ch] text-5xl font-bold leading-[1] [animation-range:0px_300px] [animation-timeline:scroll()] md:text-[120px]">
             Scroll driven animations are the future.
           </h1>
         </header>
-      </Container>
+      </Container> */}
       <Container>
         <div className="space-y-2 flex flex-col items-center">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-nowrap">
             Network Server Build
           </h1>
           <p className="mx-auto max-w-2xl text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
@@ -68,7 +68,7 @@ export default function Page() {
         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
           NSB란?
         </h2>
-        <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+        <p className="mx-auto text-center max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
           NSB는 교내 자율동아리로 기능경기대회 에 출전하는 동아리에요
           기능경기대회에 출전하기 위해 클라우드 서비스의 핵심이해와 클라우드
           서비스, 네트워크 구축 및 컴퓨터 시스템을 배워 교내 대표로써
@@ -143,14 +143,15 @@ export default function Page() {
           <Image
             alt="Photo"
             className="rounded-xl object-cover overflow-hidden aspect-[16/9] col-span-2"
-            src="/placeholder.svg"
+            src="/landing/i-3.jpg"
             width={10000}
             height={10000}
           />
+
           <Image
             alt="Photo"
             className="rounded-xl object-cover overflow-hidden aspect-[16/9] col-span-2"
-            src="/placeholder.svg"
+            src="/landing/i-1.jpg"
             width={10000}
             height={10000}
           />
@@ -159,7 +160,7 @@ export default function Page() {
           <Image
             alt="Photo"
             className="rounded-xl object-cover overflow-hidden aspect-[16/9] col-span-2"
-            src="/placeholder.svg"
+            src="/landing/i-4.jpg"
             width={10000}
             height={10000}
           />
