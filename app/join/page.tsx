@@ -1,14 +1,8 @@
-import { AuthButton } from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
 import { Container } from "@/components/container";
-import { Textarea } from "@/components/ui/textarea";
 import JoinForm from "./form";
-
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 
 export default async function Page() {
   const supabase = createClient();

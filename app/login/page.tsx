@@ -1,15 +1,16 @@
-import Link from "next/link";
-import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "./submit-button";
 
-import { ChevronLeftIcon } from "@radix-ui/react-icons";
-
 import { Button } from "@/components/ui/button";
 
 import { getURL } from "@/utils/helpers";
-import { AlertCircleIcon } from "lucide-react";
+import {
+  EnvelopeClosedIcon,
+  EnvelopeOpenIcon,
+  ExclamationTriangleIcon,
+  PaperPlaneIcon,
+} from "@radix-ui/react-icons";
 
 export default function Login({
   searchParams,
@@ -62,7 +63,7 @@ export default function Login({
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          name="이메일"
+          name="email"
           placeholder="you@example.com"
           required
         />
@@ -84,9 +85,13 @@ export default function Login({
         </SubmitButton>
 
         {searchParams?.message && (
-          <Button variant="destructive" disabled className="py-8">
-            <AlertCircleIcon className="w-6 h-6 mr-2" />
-            {messagemap[searchParams.message]}
+          <Button variant="destructive" disabled className="py-8 space-x-2">
+            {searchParams.message === "wrong-input" ? (
+              <ExclamationTriangleIcon className="h-5 w-5" />
+            ) : (
+              <EnvelopeOpenIcon className="h-5 w-5" />
+            )}
+            <span>{messagemap[searchParams.message]}</span>
           </Button>
         )}
       </form>
