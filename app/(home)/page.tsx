@@ -24,14 +24,7 @@ import { Container } from "@/components/container";
 export default function Page() {
   return (
     <>
-      <Container className="space-y-3">
-        <h1 className="text-3xl font-bold md:4xl text-nowrap">
-          Network Server Build
-        </h1>
-        <p className="text-center text-gray-500">
-          교내 자율동아리 NSB 신입부원 모집
-        </p>
-      </Container>
+      <Image src={require("@/public/header.png").default} alt="landing" />
 
       <JoinButton />
 
