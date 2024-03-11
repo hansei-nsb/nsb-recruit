@@ -10,9 +10,13 @@ export function Container({
   const flexclass = "flex flex-col items-center";
 
   return (
-    <section className={cn(className, "w-full px-5 py-10 ", flexclass)}>
+    <section className={cn("w-full px-5 py-10 ", flexclass)}>
       <div
-        className={cn("max-w-full space-y-8 w-full lg:w-[1024px]", flexclass)}
+        className={cn(
+          "max-w-full space-y-8 w-full md:w-[768px]",
+          className,
+          flexclass
+        )}
       >
         {children}
       </div>
