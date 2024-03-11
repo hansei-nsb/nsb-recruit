@@ -26,8 +26,6 @@ import { Container } from "@/components/container";
 
 export default function Page() {
   const canInitSupabaseClient = () => {
-    // This function is just for the interactive tutorial.
-    // Feel free to remove it once you have Supabase connected.
     try {
       createClient();
       return true;
@@ -40,13 +38,6 @@ export default function Page() {
 
   return (
     <>
-      {/* <Container>
-        <header className="h-fit overflow-clip bg-gradient-to-bpx-12">
-          <h1 className="animate-fade-out-down supports-no-scroll-driven-animations:animate-none max-w-[14ch] text-5xl font-bold leading-[1] [animation-range:0px_300px] [animation-timeline:scroll()] md:text-[120px]">
-            Scroll driven animations are the future.
-          </h1>
-        </header>
-      </Container> */}
       <Container>
         <div className="space-y-2 flex flex-col items-center">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-nowrap">
@@ -143,29 +134,23 @@ export default function Page() {
           <Image
             alt="Photo"
             className="rounded-xl object-cover overflow-hidden aspect-[16/9] col-span-2"
-            src={require("@/public/landing/i-3.jpg")}
+            src={require("@/public/landing/i-3.jpg").default}
             placeholder="blur"
-            width={10000}
-            height={10000}
           />
 
           <Image
             alt="Photo"
             className="rounded-xl object-cover overflow-hidden aspect-[16/9] col-span-2"
-            src={require("@/public/landing/i-2.jpg")}
+            src={require("@/public/landing/i-2.jpg").default}
             placeholder="blur"
-            width={10000}
-            height={10000}
           />
           <div />
           <div />
           <Image
             alt="Photo"
             className="rounded-xl object-cover overflow-hidden aspect-[16/9] col-span-2"
-            src={require("@/public/landing/i-4.jpg")}
+            src={require("@/public/landing/i-4.jpg").default}
             placeholder="blur"
-            width={10000}
-            height={10000}
           />
         </div>
       </Container>
