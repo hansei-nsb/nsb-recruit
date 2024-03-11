@@ -1,10 +1,6 @@
-import { createClient } from "@/utils/supabase/server";
-import { redirect } from "next/navigation";
 import { SubmitButton } from "./submit-button";
 
 import { Button } from "@/components/ui/button";
-
-import { getURL } from "@/utils/helpers";
 
 import {
   EnvelopeClosedIcon,
@@ -12,13 +8,13 @@ import {
   ExclamationTriangleIcon,
   GitHubLogoIcon,
 } from "@radix-ui/react-icons";
-import { Provider } from "@supabase/supabase-js";
 import { MessageCircle } from "lucide-react";
 
-function isValidEmail(email: string) {
-  var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-  return regex.test(email);
-}
+import {
+  signIn,
+  signInWithGithub,
+  signInWithKakao,
+} from "@/utils/auth-helpers/server";
 
 export default function Login({
   searchParams,
@@ -33,72 +29,6 @@ export default function Login({
     "email-sent": "확인 이메일을 전송하였습니다.",
     "password-to-short": "비밀번호가 너무 짧습니다.",
     "email-format-wrong": "이메일 형식이 잘못되었습니다.",
-  };
-
-  const signIn = async (formData: FormData) => {
-    "use server";
-
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const supabase = createClient();
-
-    if (password.length < 7) {
-      return redirect("/login?message=password-to-short");
-    }
-
-    if (!isValidEmail(email)) {
-      return redirect("/login?message=email-format-wrong");
-    }
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: getURL("/auth/callback"),
-        },
-      });
-
-      if (error) {
-        return redirect("/login?message=wrong-input");
-      } else {
-        return redirect("/login?message=email-sent");
-      }
-    }
-
-    return redirect("/join");
-  };
-
-  const signInWithOauth = async (provider: string) => {
-    "use server";
-    const supabase = createClient();
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: provider as Provider,
-      options: {
-        redirectTo: getURL("/auth/callback"),
-      },
-    });
-
-    if (error) {
-      return redirect("/login?message=unknown-error");
-    }
-
-    redirect(data?.url);
-  };
-
-  const signInWithGithub = async () => {
-    "use server";
-    return signInWithOauth("github");
-  };
-
-  const signInWithKakao = async () => {
-    "use server";
-    return signInWithOauth("kakao");
   };
 
   return (
@@ -131,8 +61,6 @@ export default function Login({
           <span>이메일로 로그인하기</span>
         </SubmitButton>
       </form>
-
-      {/* ---- or ---- */}
 
       <div className="flex items-center justify-center space-x-4 my-3">
         <hr className="flex-1" />
